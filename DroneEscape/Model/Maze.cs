@@ -19,9 +19,9 @@ namespace DroneEscape.Model
         {
             get { return labyrinth.GetLength(1); }
         }
-        public Maze(CellType[,] grid)
+        public Maze(CellType[,] labyrinth)
         {
-            this.labyrinth = grid;               
+            this.labyrinth = labyrinth;               
         }
         public CellType GetCell(Position pos)
         {
