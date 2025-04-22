@@ -8,28 +8,22 @@ namespace DroneEscape.Model
 {
     public class Maze
     {
-        private readonly CellType[,] labyrinth;          //массив с лабиринтом
-        public int Width
+        private CellType[,] grid;       //массив с лабиринтом
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+        public Maze(CellType[,] grid)
         {
-            get { return labyrinth.GetLength(0); }
-
-        }
-                                                                           //размеры карты
-        public int Height
-        {
-            get { return labyrinth.GetLength(1); }
-        }
-        public Maze(CellType[,] labyrinth)
-        {
-            this.labyrinth = labyrinth;               
+            this.grid = grid;
+            Width = grid.GetLength(0);
+            Height = grid.GetLength(1);
         }
         public CellType GetCell(Position pos)
         {
-            return labyrinth[pos.X, pos.Y];                  //узнать тип клетки 
+            return grid[pos.X, pos.Y];                  //узнать тип клетки 
         }
         public void SetCell(Position pos, CellType type)
         {
-            labyrinth[pos.X, pos.Y] = type;                      //задать тип клетки 
+            grid[pos.X, pos.Y] = type;                      //задать тип клетки 
         }
         public bool IsInside(Position pos)
         {

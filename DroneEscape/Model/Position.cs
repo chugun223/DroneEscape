@@ -20,7 +20,7 @@ namespace DroneEscape.Model
         {
             return new Position(X + dx, Y + dy);        //возвращение новой позиции
         }
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is Position other && other.X == X && other.Y == Y;
         }                                                                               //переопределение equals gethashcode и == и != для сравнения позиций

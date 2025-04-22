@@ -7,7 +7,7 @@ namespace DroneEscape
     {
         private const int CellSize = 40;
 
-        private GameController controller;
+        private GameController controller = null!;
 
         public GameForm()
         {
@@ -98,3 +98,5 @@ namespace DroneEscape
                     MessageBox.Show("Победа!");
             }
         }
+    }
+}
