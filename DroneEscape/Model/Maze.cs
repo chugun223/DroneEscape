@@ -41,5 +41,13 @@ namespace DroneEscape.Model
             var type = GetCell(pos);
             return type == CellType.Empty || type == CellType.Key || type == CellType.Exit;
         }
+        public CellType[,] CloneGrid()
+        {
+            var clone = new CellType[Width, Height];
+            for (int x = 0; x < Width; x++)
+                for (int y = 0; y < Height; y++)
+                    clone[x, y] = grid[x, y];
+            return clone;
+        }
     }
 }
