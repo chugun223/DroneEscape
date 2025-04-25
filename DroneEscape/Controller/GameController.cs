@@ -13,44 +13,35 @@
             State = initialState;
         }
 
-        /* ---------------- Движение ---------------- */
-
         public void Move(Direction dir)
         {
-            var delta = dir switch
+            (int, int) delta = dir switch
             {
                 Direction.Up => (0, -1),
                 Direction.Down => (0, 1),
-                Direction.Left => (-1, 0),
+                Direction.Left => (-1, 0),          //передвижение
                 Direction.Right => (1, 0),
                 _ => (0, 0)
             };
 
             var newPos = State.Drone.Position.Move(delta.Item1, delta.Item2);
 
-            /* 1. Проверяем, внутри ли карты и можно ли ходить */
-            if (!State.Maze.IsWalkable(newPos)) return;
-
-            /* 2. Двигаем дрона */
-            State.Drone.Move(newPos);
-
-            /* 3. Если на клетке ключ — подбираем */
+            if (!State.Maze.IsWalkable(newPos)) return; //проверка модно ли пройти
+            State.Drone.Move(newPos);  //движение
             if (State.Maze.GetCell(newPos) == CellType.Key)
             {
-                State.Drone.PickUpKey();
+                State.Drone.PickUpKey();                            //подбок ключа при его наличии
                 State.Maze.SetCell(newPos, CellType.Empty);
             }
         }
 
-        /* ---------------- Загрузка и перезапуск ---------------- */
-
         public void LoadLevel(CellType[,] grid, Position droneStart)
         {
-            var maze = new Maze(grid);
+            var maze = new Maze(grid);                                      //загрузка уровня
             var drone = new Drone(droneStart);
             State = new GameState(maze, drone);
         }
 
-        public void Restart() => LoadLevel(State.Maze.CloneGrid(), State.DroneStartPos);
+        public void Restart() => LoadLevel(State.Maze.CloneGrid(), State.DroneStartPos);  //перезагрузка уровня
     }
 }

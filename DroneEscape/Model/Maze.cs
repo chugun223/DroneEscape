@@ -27,7 +27,7 @@ namespace DroneEscape.Model
         }
         public bool IsInside(Position pos)
         {
-            return pos.X >= 0 && pos.X < Width && pos.Y >= 0 && pos.Y < Height;     //проверка позиции на выход за пределы
+            return pos.X >= 0 && pos.X < Width && pos.Y >= 0 && pos.Y < Height;   //проверка позиции на выход за пределы
         }
         public bool IsWalkable(Position pos)
         {
