@@ -111,11 +111,11 @@ namespace DroneEscape
 
             if (dir != null)
             {
-                controller.Move(dir.Value);
-                Invalidate();                           //окончание уровня
+                controller.Move(dir.Value);    //передвижение
+                Invalidate();                           
 
                 if (controller.State.IsGameWon)
-                    MessageBox.Show("Победа!");
+                    MessageBox.Show("Победа!");    //окончание уровня
             }
         }
 
