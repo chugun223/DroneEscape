@@ -18,7 +18,6 @@ namespace DroneEscape
             this.ClientSize = new Size(400, 400); // установка размера
         }
         //вид уровня
-        #region
         private void InitGame()
         {
             // Простой уровень 10x10
@@ -34,7 +33,7 @@ namespace DroneEscape
             }
 
             // Внутренняя стенка
-            #region
+
             level[2, 1] = CellType.Wall;
             level[2, 2] = CellType.Wall;
             level[2, 3] = CellType.Wall;
@@ -54,7 +53,6 @@ namespace DroneEscape
             level[7, 6] = CellType.Wall;
             level[7, 7] = CellType.Wall;
             level[8, 4] = CellType.Wall;
-            #endregion
 
             // Ключ и выход
             level[8, 3] = CellType.Key;
@@ -65,7 +63,6 @@ namespace DroneEscape
 
             controller = new GameController(gameState);
         }
-        #endregion
 
         protected override void OnPaint(PaintEventArgs e)
         {
