@@ -11,7 +11,12 @@ namespace DroneEscape.View
         {
             InitializeComponent();
             CreateLevelButtons();
+            this.FormClosing += (s, e) =>
+            {
+                Application.Exit(); // Закрыть всё приложение
+            };
         }
+
 
         private void CreateLevelButtons()
         {

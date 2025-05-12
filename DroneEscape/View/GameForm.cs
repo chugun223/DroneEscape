@@ -21,51 +21,7 @@ namespace DroneEscape
             controller = new GameController(gameState);
         }
         //вид уровня
-        private void InitGame()
-        {
-            // Простой уровень 10x10
-            var level = new CellType[10, 10];
-
-            // Стены по краям
-            for (int x = 0; x < 10; x++)
-            {
-                level[x, 0] = CellType.Wall;
-                level[x, 9] = CellType.Wall;
-                level[0, x] = CellType.Wall;
-                level[9, x] = CellType.Wall;
-            }
-
-            // Внутренняя стенка
-
-            level[2, 1] = CellType.Wall;
-            level[2, 2] = CellType.Wall;
-            level[2, 3] = CellType.Wall;
-            level[2, 4] = CellType.Wall;
-            level[2, 5] = CellType.Wall;
-            level[2, 7] = CellType.Wall;
-            level[3, 7] = CellType.Wall;
-            level[4, 7] = CellType.Wall;
-            level[5, 3] = CellType.Wall;
-            level[5, 4] = CellType.Wall;
-            level[5, 5] = CellType.Wall;
-            level[5, 7] = CellType.Wall;
-            level[6, 3] = CellType.Wall;
-            level[6, 7] = CellType.Wall;
-            level[7, 3] = CellType.Wall;
-            level[7, 4] = CellType.Wall;
-            level[7, 6] = CellType.Wall;
-            level[7, 7] = CellType.Wall;
-            level[8, 4] = CellType.Wall;
-
-            // Ключ и выход
-            level[8, 3] = CellType.Key;
-            level[8, 8] = CellType.Exit;
-
-            var startPos = new Position(1, 1);
-            var gameState = new GameState(new Maze(level), new Drone(startPos));
-
-            controller = new GameController(gameState);
-        }
+        
 
         protected override void OnPaint(PaintEventArgs e)
         {
