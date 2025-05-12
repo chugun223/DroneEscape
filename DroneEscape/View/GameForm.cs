@@ -5,6 +5,9 @@ namespace DroneEscape
 {
     public partial class GameForm : Form
     {
+        private Image droneImage;
+        private Image keyImage;
+        private Image exitImage;
         private const int CellSize = 40;
         private GameController controller;
         private Form menuForm; // Сохраняем ссылку на меню
@@ -16,7 +19,9 @@ namespace DroneEscape
             this.DoubleBuffered = true;
             this.KeyDown += GameForm_KeyDown;
             this.ClientSize = new Size(400, 400);
-
+            droneImage = Image.FromFile("Resources/drone.png");
+            keyImage = Image.FromFile("Resources/key.png");
+            exitImage = Image.FromFile("Resources/exit.png");
             var gameState = new GameState(new Maze(grid), new Drone(startPos));
             controller = new GameController(gameState);
         }
@@ -34,24 +39,28 @@ namespace DroneEscape
                 for (int y = 0; y < state.Maze.Height; y++)
                 {
                     var cell = state.Maze.GetCell(new Position(x, y));
-                    Brush brush = Brushes.White;
-                                                                                //отрисовка
-                    switch (cell)
-                    {
-                        case CellType.Wall: brush = Brushes.Black; break;
-                        case CellType.Key: brush = Brushes.Orange; break;
-                        case CellType.Exit: brush = Brushes.Yellow; break;
-                        case CellType.Empty: brush = Brushes.White; break;
-                    }
 
-                    g.FillRectangle(brush, x * CellSize, y * CellSize, CellSize, CellSize);
-                    g.DrawRectangle(Pens.Gray, x * CellSize, y * CellSize, CellSize, CellSize);
+
+                    if (cell == CellType.Wall)
+                    {
+                        g.FillRectangle(Brushes.Black, x * CellSize, y * CellSize, CellSize, CellSize);
+                    }
+                    else
+                    {
+                        g.FillRectangle(Brushes.White, x * CellSize, y * CellSize, CellSize, CellSize);
+                        g.DrawRectangle(Pens.Gray, x * CellSize, y * CellSize, CellSize, CellSize);
+
+                        if (cell == CellType.Key)
+                            g.DrawImage(keyImage, x * CellSize, y * CellSize, CellSize, CellSize);
+                        else if (cell == CellType.Exit)
+                            g.DrawImage(exitImage, x * CellSize, y * CellSize, CellSize, CellSize);
+                    }
                 }
             }
 
             //дрон
             var pos = state.Drone.Position;
-            g.FillEllipse(Brushes.Blue, pos.X * CellSize + 5, pos.Y * CellSize + 5, CellSize - 10, CellSize - 10);
+            g.DrawImage(droneImage, pos.X * CellSize, pos.Y * CellSize, CellSize, CellSize);
         }
 
         private void GameForm_KeyDown(object? sender, KeyEventArgs e)
