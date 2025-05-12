@@ -6,16 +6,19 @@ namespace DroneEscape
     public partial class GameForm : Form
     {
         private const int CellSize = 40;
+        private GameController controller;
+        private Form menuForm; // Сохраняем ссылку на меню
 
-        private GameController controller = null!;
-
-        public GameForm()
+        public GameForm(CellType[,] grid, Position startPos, Form menuForm)
         {
             InitializeComponent();
-            InitGame();
-            this.DoubleBuffered = true; // убираем мерцание
+            this.menuForm = menuForm;
+            this.DoubleBuffered = true;
             this.KeyDown += GameForm_KeyDown;
-            this.ClientSize = new Size(400, 400); // установка размера
+            this.ClientSize = new Size(400, 400);
+
+            var gameState = new GameState(new Maze(grid), new Drone(startPos));
+            controller = new GameController(gameState);
         }
         //вид уровня
         private void InitGame()
@@ -99,21 +102,31 @@ namespace DroneEscape
         {
             Direction? dir = e.KeyCode switch
             {
-                Keys.W => Direction.Up,
-                Keys.S => Direction.Down,           //клавиши управления
-                Keys.A => Direction.Left,
-                Keys.D => Direction.Right,
+                Keys.Up => Direction.Up,
+                Keys.Down => Direction.Down,
+                Keys.Left => Direction.Left,
+                Keys.Right => Direction.Right,
                 _ => null
             };
 
             if (dir != null)
             {
-                controller.Move(dir.Value);    //передвижение
-                Invalidate();                           
+                controller.Move(dir.Value);
+                Invalidate();
 
                 if (controller.State.IsGameWon)
-                    MessageBox.Show("Победа!");    //окончание уровня
+                {
+                    MessageBox.Show("Победа!");
+                    this.Close();          // Закрываем игру
+                    menuForm.Show();       // Показываем меню
+                }
             }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            menuForm.Show(); // Показываем меню при закрытии уровня
         }
 
         private void GameForm_Load(object sender, EventArgs e)
