@@ -84,12 +84,29 @@ namespace DroneEscape.View
         {
             var level = CreateEmptyLevel(10, 10);
             FillBorders(level);
-            level[1, 4] = CellType.Wall;
+            level[2, 1] = CellType.Wall;
+            level[2, 2] = CellType.Wall;
+            level[2, 3] = CellType.Wall;
             level[2, 4] = CellType.Wall;
-            level[3, 4] = CellType.Wall;
-            level[4, 4] = CellType.Wall;
+            level[2, 5] = CellType.Wall;
+            level[2, 6] = CellType.Wall;
+            level[2, 7] = CellType.Wall;
+            level[3, 7] = CellType.Wall;
+            level[4, 7] = CellType.Wall;
+            level[5, 7] = CellType.Wall;
+            level[5, 6] = CellType.Wall;
+            level[5, 5] = CellType.Wall;
+            level[5, 4] = CellType.Wall;
+            level[5, 3] = CellType.Wall;
+            level[7, 2] = CellType.Wall;
+            level[7, 3] = CellType.Wall;
+            level[7, 4] = CellType.Wall;
+            level[7, 5] = CellType.Wall;
+            level[7, 6] = CellType.Wall;
+            level[7, 7] = CellType.Wall;
+            level[7, 8] = CellType.Wall;
 
-            level[3, 2] = CellType.Key;
+            level[3, 6] = CellType.Key;
             level[8, 8] = CellType.Exit;
 
             return level;
@@ -100,11 +117,32 @@ namespace DroneEscape.View
             var level = CreateEmptyLevel(10, 10);
             FillBorders(level);
 
-            for (int i = 1; i < 9; i++)
-                level[i, i] = CellType.Wall;
+            level[1, 6] = CellType.Wall;
+            level[2, 1] = CellType.Wall;
+            level[2, 2] = CellType.Wall;
+            level[2, 3] = CellType.Wall;
+            level[2, 4] = CellType.Wall;
+            level[2, 7] = CellType.Wall;
+            level[3, 3] = CellType.Wall;
+            level[3, 5] = CellType.Wall;
+            level[3, 7] = CellType.Wall;
+            level[4, 2] = CellType.Wall;
+            level[4, 3] = CellType.Wall;
+            level[4, 5] = CellType.Wall;
+            level[5, 2] = CellType.Wall;
+            level[5, 5] = CellType.Wall;
+            level[5, 7] = CellType.Wall;
+            level[6, 2] = CellType.Wall;
+            level[6, 7] = CellType.Wall;
+            level[7, 2] = CellType.Wall;
+            level[7, 3] = CellType.Wall;
+            level[7, 4] = CellType.Wall;
+            level[7, 5] = CellType.Wall;
+            level[7, 6] = CellType.Wall;
+            level[7, 7] = CellType.Wall;
 
-            level[1, 8] = CellType.Key;
-            level[8, 1] = CellType.Exit;
+            level[1, 7] = CellType.Key;
+            level[3, 2] = CellType.Exit;
 
             return level;
         }
@@ -114,11 +152,18 @@ namespace DroneEscape.View
             var level = CreateEmptyLevel(10, 10);
             FillBorders(level);
 
-            for (int x = 1; x < 9; x++)
-                level[x, 5] = CellType.Wall;
+            for (int x = 1; x <= 7; x++)
+                level[x, 2] = CellType.Wall;
+            for (int x = 2; x <= 7; x++)
+                level[x, 4] = CellType.Wall;
+            for (int x = 2; x <= 7; x++)
+                level[x, 6] = CellType.Wall;
+            level[7, 3] = CellType.Wall;
+            level[2, 5] = CellType.Wall;
+            level[7, 7] = CellType.Wall;
 
-            level[1, 1] = CellType.Key;
-            level[8, 8] = CellType.Exit;
+            level[3, 5] = CellType.Key;
+            level[6, 3] = CellType.Exit;
 
             return level;
         }
@@ -128,14 +173,28 @@ namespace DroneEscape.View
             var level = CreateEmptyLevel(10, 10);
             FillBorders(level);
 
+            level[1, 3] = CellType.Wall;
+            level[1, 4] = CellType.Wall;
             level[2, 2] = CellType.Wall;
-            level[3, 3] = CellType.Wall;
+            level[2, 5] = CellType.Wall;
+            level[2, 7] = CellType.Wall;
+            level[3, 2] = CellType.Wall;
+            level[3, 6] = CellType.Wall;
+            level[4, 2] = CellType.Wall;
             level[4, 4] = CellType.Wall;
+            level[4, 8] = CellType.Wall;
             level[5, 5] = CellType.Wall;
+            level[5, 6] = CellType.Wall;
+            level[5, 7] = CellType.Wall;
+            level[6, 2] = CellType.Wall;
+            level[6, 3] = CellType.Wall;
             level[6, 6] = CellType.Wall;
+            level[7, 5] = CellType.Wall;
+            level[7, 4] = CellType.Wall;
+            level[7, 7] = CellType.Wall;
 
             level[2, 7] = CellType.Key;
-            level[7, 2] = CellType.Exit;
+            level[6, 7] = CellType.Exit;
 
             return level;
         }

@@ -67,10 +67,10 @@ namespace DroneEscape
         {
             Direction? dir = e.KeyCode switch
             {
-                Keys.Up => Direction.Up,
-                Keys.Down => Direction.Down,
-                Keys.Left => Direction.Left,
-                Keys.Right => Direction.Right,
+                Keys.W => Direction.Up,
+                Keys.S => Direction.Down,
+                Keys.A => Direction.Left,
+                Keys.D => Direction.Right,
                 _ => null
             };
 
